@@ -28,7 +28,7 @@ public class Synchronous {
         Thread thread1 = new Thread(new Runnable() { //khai báo biến mới trong class Thread 
              @Override
              public void run() { // cài đè hàm run trong lúc khai báo// vì chuyền vào 1 object của class Runnable
-                 synchronized (laCo) {
+                 synchronized (laCo) { //????
                      for (int i = 0; i < 100;) {
                          try {
                              if (laCo.get() == 0) {
@@ -36,9 +36,8 @@ public class Synchronous {
                                  System.out.println("a"+soNgauNhien.getA());
                                  Thread.sleep(20);
                                  i ++;
-                                 //lam xong viec
-                                 laCo.set(1);//chuyen co cho thang khac lam
-                                 laCo.notifyAll();//danh thuc cac thread khac dang ngu do laCo.waitF
+                                 laCo.set(1);// sau khi xong viec chuyen gia tri khac vao obj la co de ham khac chay
+                                 laCo.notifyAll();
                              } else {
                                  laCo.wait();//obj chung bat thread dung lai
                              }
@@ -55,7 +54,7 @@ public class Synchronous {
             public void run() {
                 synchronized (laCo) {
                     for (int i = 0; i < 100;) {
-                        try {
+                        try {  // co thuc hien cac dong code ben duoi, neu gap gian doan vao catch
                             if (laCo.get() == 1) {
                                 soNgauNhien.setB(new Random().nextInt(50));
                                 System.out.println("b"+ soNgauNhien.getB());
@@ -63,7 +62,7 @@ public class Synchronous {
                                 i++;
                                 //sau khi xong viec hien thi songaunhienb
                                 laCo.set(2);//chuyen co voi gia tri khac de ham khac chay
-                                laCo.notifyAll();//danh thuc cac thread khac dang ngu do laCo.waitF
+                                laCo.notifyAll();//danh thuc cac thread khac dang ngu do laCo.wait
                             } else {
                                 laCo.wait();//obj chung bat thread dung lai
                             }
@@ -84,9 +83,8 @@ public class Synchronous {
                             if (laCo.get() == 2) {
                                 System.out.println("c"+soNgauNhien.tinhTong());
                                 Thread.sleep(20);
-                                i++;
-                                //lam xong viec
-                                laCo.set(0);//chuyen co cho thang khac lam
+                                i++;            
+                                laCo.set(0);
                                 laCo.notifyAll();
                             } else {
                                 laCo.wait();
