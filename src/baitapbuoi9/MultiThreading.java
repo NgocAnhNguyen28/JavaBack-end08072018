@@ -21,10 +21,10 @@ public class MultiThreading {
      * the thì làm đồng bộ, ko thì làm như bình thường mỗi thread in 100 số
      */
     public static void main(String[] args) {
-       NumberA numberA = new NumberA();
+       SoNgauNhien1 numberA = new SoNgauNhien1();
        Thread thread1 = new Thread(numberA);
        thread1.start();
-       NumberB numberB = new NumberB();
+       SoNgauNhien2 numberB = new SoNgauNhien2();
        Thread thread2 = new Thread(numberB);
        thread2.start();
        Thread thread3 = new Thread(new Runnable() {
@@ -35,7 +35,7 @@ public class MultiThreading {
                        
                        int c = numberA.getA()+ numberB.getB();
                        System.out.print("c: " + c);
-                       Thread.sleep(10);
+                       Thread.sleep(20);
                    }catch (InterruptedException ex) {
                        Logger.getLogger(MultiThreading.class.getName()).log(Level.SEVERE, null, ex);
                    }

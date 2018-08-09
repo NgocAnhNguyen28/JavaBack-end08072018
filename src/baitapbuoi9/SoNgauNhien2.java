@@ -13,15 +13,16 @@ import java.util.logging.Logger;
  *
  * @author NgocAnh
  */
-public class NumberA extends Thread{
-    private int a;
+public class SoNgauNhien2 extends Thread{
+    
+    private int b;
 
-    public int getA() {
-        return a;
+    public int getB() {
+        return b;
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public void setB(int b) {
+        this.b = b;
     }
     
     @Override
@@ -29,12 +30,13 @@ public class NumberA extends Thread{
 
         for (int i = 0; i < 100; i++) {
             try {
-                Random soNgauNhien = new Random();
-                this.a= soNgauNhien.nextInt(50);
-                System.out.println("a:"+ this.a +"\t");
+                //Random soNgauNhien = new Random();
+                //this.b =soNgauNhien.nextInt(50);
+                this.b = new Random().nextInt(50);
+                System.out.println("b:"+ this.b+"\t");
                 Thread.sleep(20);
             } catch (InterruptedException ex) {
-                Logger.getLogger(NumberA.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SoNgauNhien2.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
